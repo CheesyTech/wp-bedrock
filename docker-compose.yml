@@ -1,0 +1,50 @@
+version: '3.3'
+
+services:
+  php-fpm:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    environment:
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_TABLE_PREFIX=wp_
+      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_PASSWORD=wordpress
+    volumes:
+    - ./code:/var/www/html
+    links:
+      - mariadb
+    restart: always
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./code:/var/www/html
+    links:
+      - php-fpm
+    restart: always
+
+  mariadb:
+    image: mariadb
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=wordpress
+    ports:
+      - "3306:3306"
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mariadb
+    ports:
+      - 8765:80
+    depends_on:
+      - mariadb
