@@ -3,7 +3,7 @@ FROM php:7.4-fpm
 RUN usermod -u 1000 www-data
 
 RUN apt-get update \
-&& docker-php-ext-install pdo pdo_mysql
+&& docker-php-ext-install mysqli
 
 RUN apt-get update && \
     apt-get upgrade -y && \
