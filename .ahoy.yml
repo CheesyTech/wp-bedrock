@@ -49,6 +49,10 @@ commands:
     cmd: "docker-compose up -d --build"
     usage: Start the docker-compose containers.
 
+  down:
+    cmd: "docker-compose down"
+    usage: Remove the docker-compose containers.
+
   logs:
     cmd: "docker-compose logs"
     usage: Docker logs
@@ -60,3 +64,5 @@ commands:
   composer-install:
     cmd: "composer install"
     usage: Install dependencies
+
+
