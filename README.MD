@@ -22,4 +22,4 @@ $ ahoy composer-install
 $ ahoy up
 ```
 
-5. Go to http://localhost
+5. Go to https://localhost
