@@ -1,5 +1,5 @@
 FROM nginx:latest
 
-COPY /docker/nginx/vhost.conf /etc/nginx/conf.d/default.conf
+COPY /docker/nginx/host.conf /etc/nginx/conf.d/default.conf
 
 #EXPOSE 80
