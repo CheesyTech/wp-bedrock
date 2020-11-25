@@ -1,6 +1,7 @@
 # WP-BEDROCK
 
 ### Requires
+- Ahoy
 - Composer
 - Docker
 
